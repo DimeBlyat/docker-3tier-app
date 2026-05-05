@@ -1,0 +1,14 @@
+replicaCount: 1
+
+frontend:
+  image: frontend-image
+  tag: latest
+  servicePort: 80
+
+backend:
+  image: backend-image
+  tag: latest
+  servicePort: 5000
+
+ingress:
+  host: dev.myapp.local
