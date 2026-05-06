@@ -29,7 +29,9 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
+        working-directory: ./backend
         run: npm install
 
       - name: Run Backend Tests
+        working-directory: ./backend
         run: npm test
