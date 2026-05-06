@@ -16,10 +16,6 @@ jobs:
   backend-test:
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: backend
-
     steps:
       - name: Show GitHub Context
         run: echo "Triggered by ${{ github.event_name }} on branch ${{ github.ref_name }}"
