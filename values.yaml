@@ -14,6 +14,7 @@ ingress:
   host: myapp.local
 
 postgresql:
+  enabled: false
   image:
     registry: docker.io
     repository: postgres
