@@ -27,7 +27,7 @@ jobs:
 
       - name: Build and push frontend
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.TAG }} ./three-tier-app/frontend
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.TAG }} .frontend
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.TAG }}
 
       - name: Build and push backend
