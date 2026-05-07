@@ -24,3 +24,7 @@ postgresql:
   primary:
     persistence:
       enabled: false
+    podSecurityContext:
+      enabled: false
+    containerSecurityContext:
+      enabled: false
