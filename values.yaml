@@ -1,10 +1,5 @@
 replicaCount: 1
 
-frontend:
-  image: dimeblyat/frontend
-  tag: "latest"
-  servicePort: 80
-
 backend:
   image: dimeblyat/backend
   tag: latest
