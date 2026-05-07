@@ -12,3 +12,15 @@ backend:
 
 ingress:
   host: myapp.local
+
+postgresql:
+  image:
+    registry: docker.io
+    repository: postgres
+    tag: "16"
+  global:
+    security:
+      allowInsecureImages: true
+  primary:
+    persistence:
+      enabled: false
