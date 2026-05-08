@@ -62,7 +62,9 @@ kubectl rollout undo deployment/backend
 
 ### Ingress Host
 
+```
 myapp.local
+```
 
 ---
 
@@ -135,8 +137,9 @@ helm install wazuh wazuh-helm/wazuh -n wazuh -f wazuh-values.yaml
 
 ### Access
 
+```
 mywazuh.com
-
+```
 
 ---
 
@@ -163,9 +166,10 @@ GitHub Push → Gitleaks Scan → TruffleHog Scan → SAST Linting → Docker Bu
 
 ### 🏷️ Example Tags
 
+```
 dimeblyat/three-tier-app:latest
 dimeblyat/three-tier-app:838b710d396c93992629b50952df69b86467eefd
-
+```
 
 ### 🔁 GitOps Workflow
 
@@ -181,11 +185,13 @@ Git Push → ArgoCD Detects Change → Helm Chart Sync → Kubernetes Update
 
 ## 🏗️ Architecture
 
+```
 Frontend (UI)
-↓
+     ↓
 Backend (API)
-↓
+     ↓
 PostgreSQL Database
+```
 
 ---
 
@@ -206,25 +212,27 @@ PostgreSQL Database
 
 ## 📁 Project Structure
 
+```
 docker-3tier-app/
 │
 ├── .github/
-│ └── workflows/
-│ └── ci-cd-pipeline.yml
+│   └── workflows/
+│       └── ci-cd-pipeline.yml
 ├── backend/
 ├── frontend/
 ├── three-tier-app/
-│ ├── templates/
-│ ├── charts/
-│ ├── values.yaml
-│ ├── values-dev.yaml
-│ ├── values-prod.yaml
-│ └── Chart.yaml
+│   ├── templates/
+│   ├── charts/
+│   ├── values.yaml
+│   ├── values-dev.yaml
+│   ├── values-prod.yaml
+│   └── Chart.yaml
 ├── docs/
-│ └── pipeline-diagram.html
+│   └── pipeline-diagram.html
 ├── application.yaml
 ├── wazuh-values.yaml
 └── README.md
+```
 
 ---
 
