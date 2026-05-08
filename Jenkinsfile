@@ -70,8 +70,9 @@ pipeline {
         stage('Deploy with Helm') {
             steps {
                 sh """
-                    helm upgrade --install three-tier-app . \
-                      -f values.yaml \
+		    export KUBECONFIG=/var/jenkins_home/.kube/config
+                    helm upgrade --install three-tier-app ./helm \
+                      -f ./helm/values.yaml \
                       --set image.tag=${IMAGE_TAG} \
                       --namespace three-tier-app \
                       --create-namespace
