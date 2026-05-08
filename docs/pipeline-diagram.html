@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day 25 – CI/CD Pipeline Architecture</title>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #0d1117;
+      color: #e6edf3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 { color: #58a6ff; margin-bottom: 0.25rem; }
+    p  { color: #8b949e; margin-bottom: 2rem; font-size: 0.9rem; }
+    .diagram-container {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 900px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Day 25 — CI/CD Pipeline Architecture</h1>
+  <p>docker-3tier-app-day10 · GitHub Actions + ArgoCD + Kubernetes</p>
+
+  <div class="diagram-container">
+    <div class="mermaid">
+flowchart TD
+    DEV([Developer Push or PR]) --> GIT[GitHub Repository]
+
+    GIT --> GL[Gitleaks Full History Scan]
+    GIT --> TH[TruffleHog Verified Secrets Scan]
+
+    GL -->|pass| SAST
+    TH -->|pass| SAST
+    GL -->|leak found| FAIL1[Pipeline BLOCKED]
+    TH -->|leak found| FAIL1
+
+    subgraph SAST [SAST and Linting Stage]
+        direction LR
+        BAN[Bandit Python SAST]
+        FL[Flake8 Style Lint]
+        SAF[Safety CVE Deps]
+    end
+
+    SAST -->|all pass| BUILD[Docker Build and Push three-tier-app colon SHA]
+    SAST -->|any fail| FAIL2[Pipeline BLOCKED]
+
+    BUILD --> GM[Patch values.yaml with new image SHA]
+    GM --> ARGO[ArgoCD detects Git change]
+    ARGO -->|auto-sync| HELM[Helm Chart Apply values.yaml and values-prod.yaml]
+    HELM --> K8S[Kubernetes Cluster three-tier-app namespace]
+    K8S --> HC{Health Check}
+    HC -->|healthy| LIVE([App Live])
+    HC -->|degraded| RB([Auto Rollback])
+
+    style FAIL1 fill:#da3633,color:#fff
+    style FAIL2 fill:#da3633,color:#fff
+    style LIVE fill:#238636,color:#fff
+    style RB fill:#9e6a03,color:#fff
+    style SAST fill:#1c2128,color:#e6edf3
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      themeVariables: {
+        primaryColor: '#1c2128',
+        primaryTextColor: '#e6edf3',
+        primaryBorderColor: '#30363d',
+        lineColor: '#58a6ff'
+      }
+    });
+  </script>
+</body>
+</html>
