@@ -143,6 +143,29 @@ mywazuh.com
 
 ---
 
+## 🛡️ Day 8 – Wazuh Access Configuration
+
+- Updated `/etc/hosts` file to map `mywazuh.com` to the local Minikube IP
+- Added the entry in nano editor for local DNS resolution
+
+### How to Access Wazuh
+
+To access Wazuh at `mywazuh.com`, I modified the `/etc/hosts` file:
+
+```bash
+nano /etc/hosts
+```
+
+Then added the following line:
+
+```
+<minikube-ip>  mywazuh.com
+```
+
+This allows your local machine to resolve `mywazuh.com` to your Minikube cluster's IP address.
+
+---
+
 ## ✅ Day 25 – CI/CD Pipeline Security & GitOps (GitHub Actions + ArgoCD)
 
 ### 🔄 Workflow
@@ -216,7 +239,7 @@ PostgreSQL Database
 docker-3tier-app/
 │
 ├── .github/
-│   └── workflows/
+│   ���── workflows/
 │       └── ci-cd-pipeline.yml
 ├── backend/
 ├── frontend/
