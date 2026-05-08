@@ -2,7 +2,7 @@ replicaCount: 1
 
 backend:
   image: dimeblyat/backend
-  tag: latest
+  tag: ca9994f6a97f5cf93c987b459a078e7fb9e6d6b3
   servicePort: 5000
 
 ingress:
@@ -13,7 +13,7 @@ postgresql:
   image:
     registry: docker.io
     repository: postgres
-    tag: "16"
+    tag: ca9994f6a97f5cf93c987b459a078e7fb9e6d6b3
   global:
     security:
       allowInsecureImages: true
