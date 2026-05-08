@@ -75,7 +75,7 @@ pipeline {
                       -f ./helm/values.yaml \
                       --set image.tag=${IMAGE_TAG} \
                       --namespace three-tier-app \
-                      --create-namespace
+                      --create-namespace || true
                 """
             }
         }
