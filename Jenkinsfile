@@ -45,7 +45,7 @@ pipeline {
                 )]) {
                     sh """
                         echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin
-                        docker build -f backend/Dockerfile -t \$DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG} .
+                        docker build -f backend/Dockerfile -t \$DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG} ./backend
                         docker tag \$DOCKER_USER/${IMAGE_NAME}:${IMAGE_TAG} \$DOCKER_USER/${IMAGE_NAME}:latest
                     """
                 }
